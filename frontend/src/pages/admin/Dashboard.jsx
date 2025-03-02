@@ -1,5 +1,3 @@
-// frontend/src/pages/admin/Dashboard.jsx
-
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -19,13 +17,12 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   
   // Get API URL from environment variable
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get(`${API_URL}/api/users/stats1`);
+        const res = await axios.get(`${API_URL}/api/users/stats`);
         setStats(res.data);
         setLoading(false);
       } catch (err) {
@@ -39,26 +36,28 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   
   return (
     <div className="min-h-screen bg-gray-100">
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex">
-              <div className="flex-shrink-0 flex items-center">
-                <h2 className="text-2xl font-bold text-gray-800">Credit Bureau</h2>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <span className="mr-4">Welcome, {user.name}</span>
-              <button
-                onClick={logout}
-                className="px-3 py-2 rounded text-sm text-white bg-red-500 hover:bg-red-600"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
+ <nav className="bg-white shadow-sm">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col sm:flex-row justify-between h-16">
+      <div className="flex items-center">
+        <div className="flex-shrink-0">
+          <h2 className="text-2xl font-bold text-gray-800">Credit Bureau</h2>
         </div>
-      </nav>
+      </div>
+      <div className="flex items-center mt-2 sm:mt-0">
+        <span className="mr-4 text-sm">Welcome, {user.name}</span>
+        <button
+          onClick={logout}
+          className="px-3 py-2 rounded text-sm text-white bg-red-500 hover:bg-red-600"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
       
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -75,7 +74,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               <div className="bg-white overflow-hidden shadow rounded-lg">
                 <div className="px-4 py-5 sm:p-6">
                   <div className="flex items-center">
@@ -99,7 +98,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-white overflow-hidden shadow rounded-lg">
                 <div className="px-4 py-5 sm:p-6">
                   <div className="flex items-center">
@@ -123,7 +122,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-white overflow-hidden shadow rounded-lg">
                 <div className="px-4 py-5 sm:p-6">
                   <div className="flex items-center">
@@ -147,7 +146,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-white overflow-hidden shadow rounded-lg">
                 <div className="px-4 py-5 sm:p-6">
                   <div className="flex items-center">
@@ -172,8 +171,8 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
                 </div>
               </div>
             </div>
-            
-            <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
+
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="bg-white overflow-hidden shadow rounded-lg">
                 <div className="px-4 py-5 sm:p-6">
                   <h3 className="text-lg leading-6 font-medium text-gray-900">Quick Actions</h3>
@@ -195,17 +194,11 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-white overflow-hidden shadow rounded-lg">
                 <div className="px-4 py-5 sm:p-6">
-                  <h3 className="text-lg leading-6 font-medium text-gray-900">System Information</h3>
-                  <div className="mt-2 max-w-xl text-sm text-gray-500">
-                    <p>Credit Bureau Management System</p>
-                    <p className="mt-1">Version 1.0.0</p>
-                    <p className="mt-1">Database: MongoDB</p>
-                    <p className="mt-1">Frontend: React.js</p>
-                    <p className="mt-1">Backend: Node.js</p>
-                  </div>
+                  <h3 className="text-lg leading-6 font-medium text-gray-900">Recent Activity</h3>
+                  {/* Add recent activities here */}
                 </div>
               </div>
             </div>

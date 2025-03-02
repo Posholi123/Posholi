@@ -114,6 +114,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
      </header>
      
      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      
        {loading ? (
          <div>Loading your credit information...</div>
        ) : error ? (
