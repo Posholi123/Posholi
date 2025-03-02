@@ -1,5 +1,4 @@
 // backend/server.js
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -7,18 +6,22 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+// Debug allowed origins
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',') 
+  : ['http://localhost:5173', 'https://credit-bureau-management-system.netlify.app'];
+console.log('Allowed origins:', allowedOrigins);
+
 const app = express();
 
 // Middleware
 app.use(express.json());
-
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://credit-bureau-management-system.netlify.app/'] 
-    : ['http://localhost:5173'],
-  credentials: true
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
 }));
-
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
