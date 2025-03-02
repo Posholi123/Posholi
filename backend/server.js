@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-netlify-app.netlify.app'] 
+    ? ['https://credit-bureau-management-system.netlify.app/'] 
     : ['http://localhost:5173'],
   credentials: true
 }));
