@@ -12,10 +12,15 @@ const PendingApprovals = () => {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   
+  
+    // Get API URL from environment variable
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+
   useEffect(() => {
     const fetchPendingLenders = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/users/pending', {
+        const res = await axios.get(`${API_URL}/api/users/pending`, {
           headers: { 'x-auth-token': token }
         });
         setPendingLenders(res.data);
@@ -31,7 +36,7 @@ const PendingApprovals = () => {
   
   const handleApprove = async (userId) => {
     try {
-      await axios.put(`http://localhost:5000/api/users/approve/${userId}`, {}, {
+      await axios.put(`${API_URL}api/users/approve/${userId}`, {}, {
         headers: { 'x-auth-token': token }
       });
       

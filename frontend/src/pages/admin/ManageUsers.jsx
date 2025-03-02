@@ -15,10 +15,14 @@ const ManageUsers = () => {
   const { user, token } = useContext(AuthContext);
   const navigate = useNavigate();
   
+    // Get API URL from environment variable
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/users', {
+        const res = await axios.get(`${API_URL}/api/users`, {
           headers: { 'x-auth-token': token }
         });
         setUsers(res.data);
@@ -34,7 +38,7 @@ const ManageUsers = () => {
   
   const handleApprove = async (userId) => {
     try {
-      await axios.put(`http://localhost:5000/api/users/approve/${userId}`, {}, {
+      await axios.put(`${API_URL}/api/users/approve/${userId}`, {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -49,7 +53,7 @@ const ManageUsers = () => {
   const handleDelete = async (userId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/users/${userId}`, {
+        await axios.delete(`${API_URL}/api/users/${userId}`, {
           headers: { 'x-auth-token': token }
         });
         

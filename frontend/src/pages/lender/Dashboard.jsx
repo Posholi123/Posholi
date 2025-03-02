@@ -19,10 +19,13 @@ const LenderDashboard = () => {
   const { user, logout, token } = useContext(AuthContext);
   const navigate = useNavigate();
   
+// Get API URL from environment variable
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const loansRes = await axios.get('http://localhost:5000/api/credit/lender', {
+        const loansRes = await axios.get(`${API_URL}/api/credit/lender`, {
           headers: { 'x-auth-token': token }
         });
         

@@ -18,10 +18,14 @@ const AdminDashboard = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   
+  // Get API URL from environment variable
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/users/stats');
+        const res = await axios.get(`${API_URL}/api/users/stats1`);
         setStats(res.data);
         setLoading(false);
       } catch (err) {

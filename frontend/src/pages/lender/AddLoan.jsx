@@ -25,13 +25,16 @@ const AddLoan = () => {
   
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
   
+      // Get API URL from environment variable
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   const searchConsumer = async e => {
     e.preventDefault();
     setError('');
     setLoading(true);
     
     try {
-      const res = await axios.get(`http://localhost:5000/api/users/search?email=${consumerEmail}&role=consumer`, {
+      const res = await axios.get(`${API_URL}/api/users/search?email=${consumerEmail}&role=consumer`, {
         headers: { 'x-auth-token': token }
       });
       
@@ -54,7 +57,7 @@ const AddLoan = () => {
     setLoading(true);
     
     try {
-      await axios.post('http://localhost:5000/api/credit', {
+      await axios.post(`${API_URL}/api/credit`, {
         consumerId: consumerData._id,
         loanType,
         amount: Number(amount),

@@ -16,6 +16,10 @@ const ViewReports = () => {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   
+  
+// Get API URL from environment variable
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   const handleSearch = async (e) => {
     e.preventDefault();
     setError('');
@@ -23,7 +27,7 @@ const ViewReports = () => {
     
     try {
       // Search for consumer
-      const consumerRes = await axios.get(`http://localhost:5000/api/users/search?email=${searchEmail}&role=consumer`, {
+      const consumerRes = await axios.get(`${API_URL}/api/users/search?email=${searchEmail}&role=consumer`, {
         headers: { 'x-auth-token': token }
       });
       
@@ -36,14 +40,14 @@ const ViewReports = () => {
       setConsumer(consumerRes.data);
       
       // Get credit score
-      const scoreRes = await axios.get(`http://localhost:5000/api/credit/score/${consumerRes.data._id}`, {
+      const scoreRes = await axios.get(`${API_URL}/api/credit/score/${consumerRes.data._id}`, {
         headers: { 'x-auth-token': token }
       });
       
       setCreditScore(scoreRes.data);
       
       // Get credit records
-      const loansRes = await axios.get(`http://localhost:5000/api/credit/consumer/${consumerRes.data._id}`, {
+      const loansRes = await axios.get(`${API_URL}/api/credit/consumer/${consumerRes.data._id}`, {
         headers: { 'x-auth-token': token }
       });
       

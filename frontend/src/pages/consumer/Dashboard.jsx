@@ -19,16 +19,20 @@ const ConsumerDashboard = () => {
  const { user, logout, token } = useContext(AuthContext);
  const navigate = useNavigate();
  
+ 
+    // Get API URL from environment variable
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
  useEffect(() => {
    const fetchData = async () => {
      try {
        // Get credit score
-       const scoreRes = await axios.get(`http://localhost:5000/api/credit/score/${user.id}`, {
+       const scoreRes = await axios.get(`${API_URL}/api/credit/score/${user.id}`, {
          headers: { 'x-auth-token': token }
        });
        
        // Get credit records
-       const loansRes = await axios.get(`http://localhost:5000/api/credit/consumer/${user.id}`, {
+       const loansRes = await axios.get(`${API_URL}/api/credit/consumer/${user.id}`, {
          headers: { 'x-auth-token': token }
        });
        
