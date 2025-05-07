@@ -4,6 +4,8 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
+import html2pdf from 'html2pdf.js';
+
 
 const ViewReport = () => {
  const [creditData, setCreditData] = useState({
