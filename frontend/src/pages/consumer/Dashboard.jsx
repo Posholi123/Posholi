@@ -20,9 +20,9 @@ const ConsumerDashboard = () => {
  const navigate = useNavigate();
  
  
-    // Get API URL from environment variable
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
+   // Updated API URL to use the deployed endpoint
+   const API_URL = 'https://back-8m8k.onrender.com';
+   
  useEffect(() => {
    const fetchData = async () => {
      try {

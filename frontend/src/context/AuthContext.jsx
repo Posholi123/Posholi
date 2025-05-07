@@ -1,11 +1,8 @@
-// frontend/src/context/AuthContext.jsx
-
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Get API URL from environment variable
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
+// Use the deployed backend URL
+const API_URL = 'https://back-8m8k.onrender.com';
 
 export const AuthContext = createContext();
 

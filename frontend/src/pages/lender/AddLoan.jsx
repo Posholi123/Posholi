@@ -1,5 +1,3 @@
-// frontend/src/pages/lender/AddLoan.jsx
-
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -25,8 +23,8 @@ const AddLoan = () => {
   
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
   
-      // Get API URL from environment variable
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  // Updated API URL to use the deployed endpoint
+  const API_URL = 'https://back-8m8k.onrender.com';
 
   const searchConsumer = async e => {
     e.preventDefault();
